@@ -34,13 +34,13 @@ export class TodoResolver {
   }
 
   @Mutation(() => Todo)
-  updateTodo(@Args('updateTodoInput') updateTodoInput: UpdateTodoInput) {
-    return this.todoService.update(updateTodoInput.id, updateTodoInput);
+  async updateTodo(@Args('updateTodoInput') updateTodoInput: UpdateTodoInput) {
+    return await this.todoService.update(updateTodoInput.id, updateTodoInput);
   }
 
   @Mutation(() => Todo)
   async removeTodo(@Args('id', { type: () => Int }) id: number, @I18n() i18n: I18nContext,) {
-    const todo = this.todoService.remove(id);
+    const todo = await this.todoService.remove(id);
     if (!todo) {
       const message = await i18n.translate('todo.not_found', { args: { id } });
       throw new NotFoundException(message);

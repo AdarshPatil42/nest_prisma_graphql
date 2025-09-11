@@ -28,7 +28,6 @@
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "^6.14.0",
     "graphql": "^16.11.0",
-    "i18next": "^25.5.2",
     "nestjs-i18n": "^10.5.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"

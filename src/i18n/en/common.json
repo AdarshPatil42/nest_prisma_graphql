@@ -1,0 +1,6 @@
+{
+  "db": {
+    "unique_conflict": "A record with this {field} already exists.",
+    "not_found": "The requested resource was not found."
+  }
+}

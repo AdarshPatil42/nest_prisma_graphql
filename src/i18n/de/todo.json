@@ -1,15 +1,13 @@
 {
-  "todo": {
-    "create": {
-      "success": "Todo \"{name}\" wurde erstellt.",
-      "validation_error": "Validierung für Todo fehlgeschlagen."
-    },
-    "update": {
-      "success": "Todo \"{name}\" wurde aktualisiert."
-    },
-    "delete": {
-      "success": "Todo gelöscht."
-    },
-    "not_found": "Todo mit ID {id} wurde nicht gefunden."
-  }
+  "create": {
+    "success": "Todo \"{name}\" wurde erstellt.",
+    "validation_error": "Validierung für Todo fehlgeschlagen."
+  },
+  "update": {
+    "success": "Todo \"{name}\" wurde aktualisiert."
+  },
+  "delete": {
+    "success": "Todo gelöscht."
+  },
+  "not_found": "Todo mit ID {id} wurde nicht gefunden."
 }

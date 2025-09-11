@@ -10,11 +10,11 @@ import { I18nModule, I18nJsonLoader, AcceptLanguageResolver, QueryResolver, Head
 @Module({
   imports: [
     I18nModule.forRoot({
-      fallbackLanguage: 'en',    // what to use when desired language not found
+      fallbackLanguage: 'en',
       loader: I18nJsonLoader,
       loaderOptions: {
         path: path.join(__dirname, '/i18n/'),
-        watch: true,  // for development hot reloading of translation files
+        watch: true,
       },
       resolvers: [
         { use: QueryResolver, options: ['lang'] },

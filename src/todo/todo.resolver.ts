@@ -3,7 +3,7 @@ import { TodoService } from './todo.service';
 import { Todo } from './entities/todo.entity';
 import { CreateTodoInput } from './dto/create-todo.input';
 import { UpdateTodoInput } from './dto/update-todo.input';
-import { I18nContext, I18nService } from 'nestjs-i18n';
+import { I18n, I18nContext } from 'nestjs-i18n';
 import { NotFoundException } from '@nestjs/common';
 
 @Resolver(() => Todo)
@@ -20,21 +20,14 @@ export class TodoResolver {
     return this.todoService.findAll();
   }
 
-  // @Query(() => Todo, { name: 'todo' })
-  // findOne(@Args('id', { type: () => Int }) id: number) {
-  //   return this.todoService.findOne(id);
-  // }
-
   @Query(() => Todo, { name: 'todo' })
   async findOne(
     @Args('id', { type: () => Int }) id: number,
+    @I18n() i18n: I18nContext
   ) {
-    const i18n = I18nContext.current();
-    console.log('Resolved lang:', i18n?.lang);
     const todo = await this.todoService.findOne(id);
     if (!todo) {
-      const message = i18n!.translate('todo.not_found', { args: { id } });
-      console.log('message', message);
+      const message = await i18n.translate('todo.not_found', { args: { id } });
       throw new NotFoundException(message);
     }
     return todo;
@@ -46,7 +39,12 @@ export class TodoResolver {
   }
 
   @Mutation(() => Todo)
-  removeTodo(@Args('id', { type: () => Int }) id: number) {
-    return this.todoService.remove(id);
+  async removeTodo(@Args('id', { type: () => Int }) id: number, @I18n() i18n: I18nContext,) {
+    const todo = this.todoService.remove(id);
+    if (!todo) {
+      const message = await i18n.translate('todo.not_found', { args: { id } });
+      throw new NotFoundException(message);
+    }
+    return todo;
   }
 }

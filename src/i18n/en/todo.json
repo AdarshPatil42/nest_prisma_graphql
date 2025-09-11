@@ -5,11 +5,11 @@
       "validation_error": "Validation failed for Todo."
     },
     "update": {
-      "success": "Todo \"{name}\" updated."
+      "success": "Todo \"{id}\" updated."
     },
     "delete": {
       "success": "Todo deleted."
     },
-    "not_found": "Todo with id {id} was not found."
+    "not_found": "Todo with id {id} was not found. sdfndn"
   }
 }

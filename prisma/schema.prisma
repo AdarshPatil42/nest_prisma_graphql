@@ -18,4 +18,22 @@ model Todo {
   title String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  content   Json?
+
+  content_en Json?
+  content_de Json?
+  content_es Json?
+
+  translations TodoTranslation[]
+}
+
+model TodoTranslation {
+  id      Int    @id @default(autoincrement())
+  lang    String
+  content Json
+
+  todoId  Int
+  todo    Todo   @relation(fields: [todoId], references: [id])
+
+  @@unique([todoId, lang]) // Each todo has only 1 translation per lang
 }

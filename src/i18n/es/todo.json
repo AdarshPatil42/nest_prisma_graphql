@@ -1,0 +1,13 @@
+{
+  "create": {
+    "success": "Tarea \"{name}\" creada.",
+    "validation_error": "La validación de la Tarea falló."
+  },
+  "update": {
+    "success": "Tarea \"{id}\" actualizada."
+  },
+  "delete": {
+    "success": "Tarea eliminada."
+  },
+  "not_found": "No se encontró la Tarea con el id {id}."
+}

@@ -8,7 +8,7 @@ import { NotFoundException } from '@nestjs/common';
 
 @Resolver(() => Todo)
 export class TodoResolver {
-  constructor(private readonly todoService: TodoService) { }
+  constructor(private readonly todoService: TodoService) {}
 
   @Mutation(() => Todo)
   createTodo(@Args('createTodoInput') createTodoInput: CreateTodoInput) {
@@ -23,11 +23,11 @@ export class TodoResolver {
   @Query(() => Todo, { name: 'todo' })
   async findOne(
     @Args('id', { type: () => Int }) id: number,
-    @I18n() i18n: I18nContext
+    @I18n() i18n: I18nContext,
   ) {
     const todo = await this.todoService.findOne(id);
     if (!todo) {
-      const message = await i18n.translate('todo.not_found', { args: { id } });
+      const message = i18n.translate('todo.not_found', { args: { id } });
       throw new NotFoundException(message);
     }
     return todo;
@@ -39,10 +39,13 @@ export class TodoResolver {
   }
 
   @Mutation(() => Todo)
-  async removeTodo(@Args('id', { type: () => Int }) id: number, @I18n() i18n: I18nContext,) {
+  async removeTodo(
+    @Args('id', { type: () => Int }) id: number,
+    @I18n() i18n: I18nContext,
+  ) {
     const todo = await this.todoService.remove(id);
     if (!todo) {
-      const message = await i18n.translate('todo.not_found', { args: { id } });
+      const message = i18n.translate('todo.not_found', { args: { id } });
       throw new NotFoundException(message);
     }
     return todo;

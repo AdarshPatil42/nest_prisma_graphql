@@ -5,7 +5,13 @@ import { join } from 'path';
 import { TodoModule } from './todo/todo.module';
 import { PrismaService } from './prisma/prisma.service';
 import * as path from 'path';
-import { I18nModule, I18nJsonLoader, AcceptLanguageResolver, QueryResolver, HeaderResolver } from 'nestjs-i18n';
+import {
+  I18nModule,
+  I18nJsonLoader,
+  AcceptLanguageResolver,
+  QueryResolver,
+  HeaderResolver,
+} from 'nestjs-i18n';
 
 @Module({
   imports: [
@@ -32,4 +38,4 @@ import { I18nModule, I18nJsonLoader, AcceptLanguageResolver, QueryResolver, Head
   ],
   providers: [PrismaService],
 })
-export class AppModule { }
+export class AppModule {}

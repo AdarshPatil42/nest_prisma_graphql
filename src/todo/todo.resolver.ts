@@ -80,4 +80,70 @@ export class TodoResolver {
   ) {
     return this.todoService.findOneWithLangO1(id, i18n);
   }
+
+  // ------------------------------
+  // 🚀 Option 2: Separate translation table
+  // ------------------------------
+
+  // 🔹 Update content for specific lang
+  @Mutation(() => Todo)
+  updateTodoContentO2(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('lang') lang: string,
+    @Args('content') content: ContentDto,
+  ) {
+    return this.todoService.updateContentO2(id, lang, content);
+  }
+
+  // 🔹 Get all todos in request language
+  @Query(() => [Todo], { name: 'todosWithLangO2' })
+  findAllWithLangO2(@I18n() i18n: I18nContext) {
+    return this.todoService.findAllWithLangO2(i18n);
+  }
+
+  // 🔹 Get one todo in request language
+  @Query(() => Todo, { name: 'todoWithLangO2' })
+  async findOneWithLangO2(
+    @Args('id', { type: () => Int }) id: number,
+    @I18n() i18n: I18nContext,
+  ) {
+    const todo = await this.todoService.findOneWithLangO2(id, i18n);
+    if (!todo) {
+      const message = i18n.translate('todo.not_found', { args: { id } });
+      throw new NotFoundException(message);
+    }
+    return todo;
+  }
+
+
+  // ------------------------------
+  // 🚀 Option 3: Separate columns per language
+  // ------------------------------
+
+  @Mutation(() => Todo)
+  updateTodoContentO3(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('lang') lang: string,
+    @Args('content') content: ContentDto,
+  ) {
+    return this.todoService.updateContentO3(id, lang, content);
+  }
+
+  @Query(() => [Todo], { name: 'todosWithLangO3' })
+  findAllWithLangO3(@I18n() i18n: I18nContext) {
+    return this.todoService.findAllWithLangO3(i18n);
+  }
+
+  @Query(() => Todo, { name: 'todoWithLangO3' })
+  async findOneWithLangO3(
+    @Args('id', { type: () => Int }) id: number,
+    @I18n() i18n: I18nContext,
+  ) {
+    const todo = await this.todoService.findOneWithLangO3(id, i18n);
+    if (!todo) {
+      const message = i18n.translate('todo.not_found', { args: { id } });
+      throw new NotFoundException(message);
+    }
+    return todo;
+  }
 }

@@ -32,13 +32,19 @@ type Mutation {
   removeTodo(id: Int!): Todo!
   updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
   updateTodoContentO1(content: ContentInput!, id: Int!, lang: String!): Todo!
+  updateTodoContentO2(content: ContentInput!, id: Int!, lang: String!): Todo!
+  updateTodoContentO3(content: ContentInput!, id: Int!, lang: String!): Todo!
 }
 
 type Query {
   todo(id: Int!): Todo!
   todoWithLang(id: Int!): Todo!
+  todoWithLangO2(id: Int!): Todo!
+  todoWithLangO3(id: Int!): Todo!
   todos: [Todo!]!
   todosWithLang: [Todo!]!
+  todosWithLangO2: [Todo!]!
+  todosWithLangO3: [Todo!]!
 }
 
 type Todo {

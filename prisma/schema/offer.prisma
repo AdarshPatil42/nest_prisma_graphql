@@ -1,0 +1,8 @@
+model Offer {
+  id        Int          @id @default(autoincrement())
+  name      String
+  planId    Int?         // Optional reference to Plan
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now())
+  translations EntityTranslation[] @relation("OfferTranslations")
+}

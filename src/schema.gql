@@ -14,6 +14,11 @@ input ContentInput {
   title: String!
 }
 
+input CreateRewardInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateTodoInput {
   content: ContentInput
   content_de: ContentInput
@@ -22,21 +27,73 @@ input CreateTodoInput {
   title: String!
 }
 
+type Credit {
+  amount: Float!
+  content: CreditContentDto
+  createdAt: DateTime!
+  id: Int!
+  updatedAt: DateTime!
+  userId: Int!
+}
+
+type CreditContentDto {
+  amount: Float!
+  description: String!
+}
+
+input CreditContentInput {
+  amount: Float!
+  description: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
 type Mutation {
+  createCredit(amount: Float!, content: CreditContentInput, lang: String!, userId: Int!): Credit!
+  createOffer(content: OfferContentInput, lang: String!, name: String!, planId: Int): Offer!
+  createReward(createRewardInput: CreateRewardInput!): Reward!
   createTodo(createTodoInput: CreateTodoInput!): Todo!
+  removeReward(id: Int!): Reward!
   removeTodo(id: Int!): Todo!
+  updateCreditContent(content: CreditContentInput!, id: Int!, lang: String!): Credit!
+  updateOfferContent(content: OfferContentInput!, id: Int!, lang: String!): Offer!
+  updateReward(updateRewardInput: UpdateRewardInput!): Reward!
   updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
   updateTodoContentO1(content: ContentInput!, id: Int!, lang: String!): Todo!
   updateTodoContentO2(content: ContentInput!, id: Int!, lang: String!): Todo!
   updateTodoContentO3(content: ContentInput!, id: Int!, lang: String!): Todo!
 }
 
+type Offer {
+  content: OfferContentDto
+  createdAt: DateTime!
+  id: Int!
+  name: String!
+  planId: Int
+  updatedAt: DateTime!
+}
+
+type OfferContentDto {
+  description: String!
+  test: String!
+  title: String!
+}
+
+input OfferContentInput {
+  description: String!
+  test: String!
+  title: String!
+}
+
 type Query {
+  creditWithLang(id: Int!): Credit!
+  creditsWithLang: [Credit!]!
+  offerWithLang(id: Int!): Offer!
+  offersWithLang: [Offer!]!
+  reward(id: Int!): Reward!
   todo(id: Int!): Todo!
   todoWithLang(id: Int!): Todo!
   todoWithLangO2(id: Int!): Todo!
@@ -45,6 +102,11 @@ type Query {
   todosWithLang: [Todo!]!
   todosWithLangO2: [Todo!]!
   todosWithLangO3: [Todo!]!
+}
+
+type Reward {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 type Todo {
@@ -62,6 +124,12 @@ type TodoTranslation {
   content: ContentDto!
   id: Int!
   lang: String!
+}
+
+input UpdateRewardInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateTodoInput {

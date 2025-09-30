@@ -1,0 +1,8 @@
+model Credit {
+  id        Int          @id @default(autoincrement())
+  amount    Float
+  userId    Int
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now())
+  translations EntityTranslation[] @relation("CreditTranslations")
+}

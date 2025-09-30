@@ -12,6 +12,9 @@ import {
   QueryResolver,
   HeaderResolver,
 } from 'nestjs-i18n';
+import { CreditModule } from './credit/credit.module';
+import { OfferModule } from './offer/offer.module';
+import { RewardModule } from './reward/reward.module';
 
 @Module({
   imports: [
@@ -35,6 +38,9 @@ import {
       context: ({ req }) => ({ req }),
     }),
     TodoModule,
+    CreditModule,
+    OfferModule,
+    RewardModule,
   ],
   providers: [PrismaService],
 })

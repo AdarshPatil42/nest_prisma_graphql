@@ -1,0 +1,8 @@
+model Reward {
+  id        Int          @id @default(autoincrement())
+  points    Int
+  userId    Int
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now())
+  translations EntityTranslation[] @relation("RewardTranslations")
+}

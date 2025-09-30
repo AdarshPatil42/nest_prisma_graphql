@@ -106,3 +106,9 @@ http://localhost:3000/graphql
 ## docker compose
 docker-compose down 
 docker-compose up -d
+
+## Run Prisma Migrations
+npx prisma migrate dev --name add_modules
+
+## Update Prisma Client
+npx prisma generate

@@ -1,0 +1,8 @@
+model Onboarding {
+  id        Int          @id @default(autoincrement())
+  userId    Int
+  step      String
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @default(now())
+  translations EntityTranslation[] @relation("OnboardingTranslations")
+}

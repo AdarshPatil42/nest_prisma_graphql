@@ -35,5 +35,5 @@ model TodoTranslation {
   todoId  Int
   todo    Todo   @relation(fields: [todoId], references: [id])
 
-  @@unique([todoId, lang]) // Each todo has only 1 translation per lang
+  @@unique([todoId, lang])
 }
